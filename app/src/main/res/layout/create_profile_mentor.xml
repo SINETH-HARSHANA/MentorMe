@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Profile Photo Upload -->
+        <ImageView
+            android:id="@+id/imgProfilePhoto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/propic_round"
+            android:background="@drawable/round_background"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnUploadPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Photo"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/imgProfilePhoto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/tvNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textColor="#056C39"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/btnUploadPhoto"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etMentorName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter your name"
+            android:inputType="textPersonName"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvNameLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Mentoring Side -->
+        <TextView
+            android:id="@+id/tvMentoringSideLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mentoring Side"
+            android:textStyle="bold"
+            android:textColor="#056C39"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/etMentorName"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etMentoringSide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="e.g., Mathematics, Programming"
+            android:inputType="text"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvMentoringSideLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Available Hours -->
+        <TextView
+            android:id="@+id/tvAvailableHoursLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available Hours"
+            android:textStyle="bold"
+            android:textColor="#056C39"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/etMentoringSide"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etAvailableHours"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="e.g., Mon-Fri 6pm-9pm"
+            android:inputType="text"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvAvailableHoursLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Contact Details -->
+        <TextView
+            android:id="@+id/tvContactLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Details"
+            android:textStyle="bold"
+            android:textColor="#056C39"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/etAvailableHours"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etContact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter your contact info"
+            android:inputType="phone|textEmailAddress"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvContactLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Short Description -->
+        <TextView
+            android:id="@+id/tvDescriptionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Short Description"
+            android:textStyle="bold"
+            android:textColor="#056C39"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/etContact"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:hint="Describe yourself..."
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Go to Location Selector Button -->
+        <Button
+            android:id="@+id/btnSelectLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Select Location on Map"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#056C39"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/etDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/btnSaveProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Save Profile"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#056C39"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/btnSelectLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

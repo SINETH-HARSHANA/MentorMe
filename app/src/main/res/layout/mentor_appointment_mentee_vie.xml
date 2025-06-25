@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_mentee_appointments"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#F9F9F9">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tv_appointments_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Appointments"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="#222222"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Successful Appointments Label -->
+    <TextView
+        android:id="@+id/tv_successful_appointments_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Successful Appointments"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#44AA77"
+        app:layout_constraintTop_toBottomOf="@id/tv_appointments_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Successful Appointment Card 1 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_successful_appointment1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_successful_appointments_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/tv_mentor_name_success1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mentor: John Doe"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222222"/>
+
+            <TextView
+                android:id="@+id/tv_appointment_date_success1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: 2025-07-01"
+                android:textSize="15sp"
+                android:layout_marginTop="6dp"
+                android:textColor="#555555"/>
+
+            <TextView
+                android:id="@+id/tv_appointment_time_success1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time: 10:30 AM"
+                android:textSize="15sp"
+                android:layout_marginTop="2dp"
+                android:textColor="#555555"/>
+
+            <TextView
+                android:id="@+id/tv_appointment_details_success1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details: Discussion about project progress."
+                android:textSize="15sp"
+                android:layout_marginTop="7dp"
+                android:textColor="#777777"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Successful Appointment Card 2 (Optional, duplicate as needed) -->
+    <!--
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_successful_appointment2"
+        ...>
+        ...
+    </androidx.cardview.widget.CardView>
+    -->
+
+    <!-- Pending Appointments Label -->
+    <TextView
+        android:id="@+id/tv_pending_appointments_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pending Appointments"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FFA500"
+        app:layout_constraintTop_toBottomOf="@id/card_successful_appointment1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Pending Appointment Card 1 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_pending_appointment1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_pending_appointments_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/tv_mentor_name_pending1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mentor: Jane Smith"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222222"/>
+
+            <TextView
+                android:id="@+id/tv_appointment_date_pending1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: 2025-07-05"
+                android:textSize="15sp"
+                android:layout_marginTop="6dp"
+                android:textColor="#555555"/>
+
+            <TextView
+                android:id="@+id/tv_appointment_time_pending1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time: 02:00 PM"
+                android:textSize="15sp"
+                android:layout_marginTop="2dp"
+                android:textColor="#555555"/>
+
+            <TextView
+                android:id="@+id/tv_appointment_details_pending1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details: Initial guidance session."
+                android:textSize="15sp"
+                android:layout_marginTop="7dp"
+                android:textColor="#777777"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Pending Appointment Card 2 (Optional, duplicate as needed) -->
+    <!--
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_pending_appointment2"
+        ...>
+        ...
+    </androidx.cardview.widget.CardView>
+    -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

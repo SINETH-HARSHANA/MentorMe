@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mentor_profile_constraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#F9F9F9">
+
+    <!-- Profile Picture -->
+    <ImageView
+        android:id="@+id/img_profile_pic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher_background"
+        android:scaleType="centerCrop"
+        android:contentDescription="Profile Picture"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Mentor Name -->
+    <TextView
+        android:id="@+id/tv_mentor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mentor Name"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@id/img_profile_pic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Mentor Side -->
+    <TextView
+        android:id="@+id/tv_mentor_side"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mentor (Subject/Field)"
+        android:textSize="16sp"
+        android:textColor="#4A90E2"
+        app:layout_constraintTop_toBottomOf="@id/tv_mentor_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Phone Number -->
+    <TextView
+        android:id="@+id/tv_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone: +1 234 567 890"
+        android:textSize="15sp"
+        android:textColor="#555555"
+        app:layout_constraintTop_toBottomOf="@id/tv_mentor_side"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Brief Introduction -->
+    <TextView
+        android:id="@+id/tv_brief_intro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Brief introduction about the mentor goes here, highlighting expertise, experience, and mentoring style."
+        android:textSize="15sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp" />
+
+    <!-- Contact Details Section -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/contact_details_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_brief_intro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="#E8F0FE">
+
+            <TextView
+                android:id="@+id/tv_contact_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact Details"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#222222"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_contact_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: mentor@email.com"
+                android:textSize="15sp"
+                android:textColor="#555555"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tv_contact_linkedin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LinkedIn: linkedin.com/in/mentor"
+                android:textSize="15sp"
+                android:textColor="#555555"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
