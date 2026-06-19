@@ -2,97 +2,106 @@ package com.s23010149.mentorme;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.activity.EdgeToEdge;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText emailEditText, passwordEditText;
-    private Button loginButton;
+    private EditText etEmail, etPassword;
+    private Button btnLogin, btnRegister, btnLoginAsMentor;
+
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        Button registerButton = findViewById(R.id.button4); // change to your main button's ID
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button mentorlogin  = findViewById(R.id.button); // change to your main button's ID
-        mentorlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MentorLoginAvtivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-        emailEditText = findViewById(R.id.editTextTextEmailAddress2);
-        passwordEditText = findViewById(R.id.editTextTextPassword2);
-        loginButton = findViewById(R.id.button3);
+        // View binding (IDs from your XML)
+        etEmail = findViewById(R.id.editTextTextEmailAddress2);
+        etPassword = findViewById(R.id.editTextTextPassword2);
+        btnLogin = findViewById(R.id.button3);       // Login
+        btnRegister = findViewById(R.id.button4);    // Register
+        btnLoginAsMentor = findViewById(R.id.button); // Login as Mentor
 
         db = FirebaseFirestore.getInstance();
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = emailEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
-
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Query Firestore for user with given email, password, and role "Mentor"
-                db.collection("users")
-                        .whereEqualTo("email", email)
-                        .whereEqualTo("password", password)
-                        .whereEqualTo("role", "As Mentee")
-                        .get()
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                QuerySnapshot querySnapshot = task.getResult();
-                                if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                                    // User found
-                                    Toast.makeText(MainActivity.this, "Login successful as Mentee!", Toast.LENGTH_SHORT).show();
-                                    // Start your Mentor Activity or whatever comes next
-                                    Intent intent = new Intent(MainActivity.this, MenteeDashboardActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(MainActivity.this, "Login failed. Not a Mentor or incorrect credentials.", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(MainActivity.this, "Login error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
+        // Register -> RegisterActivity
+        btnRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
+
+        // Login as Mentor -> MentorLoginActivity (direct navigation as requested)
+        btnLoginAsMentor.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MentorLoginActivity.class);
+            startActivity(intent);
+        });
+
+        // Login -> validate email/password from Firestore, then go to MenteeDashboardActivity
+        btnLogin.setOnClickListener(v -> loginMentee());
     }
 
+    private void loginMentee() {
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+
+        // Input validation
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError("Email is required");
+            etEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("Enter a valid email");
+            etEmail.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            etPassword.setError("Password is required");
+            etPassword.requestFocus();
+            return;
+        }
+
+        // Firestore check: collection "users"
+        // each document should have fields: email, password, role (optional)
+        db.collection("users")
+                .whereEqualTo("email", email)
+                .whereEqualTo("password", password)
+                .limit(1)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
+                            // Login success -> go to mentee dashboard
+                            Intent intent = new Intent(MainActivity.this, MenteeDashboardActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Login failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 }

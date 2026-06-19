@@ -2,39 +2,38 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F8F8"
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 
-    <!-- Dropdown menu (overflow) at top right -->
     <ImageButton
         android:id="@+id/btnDropdownMenu"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/round_background"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         android:contentDescription="Menu"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/round_background"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Dashboard title -->
     <TextView
         android:id="@+id/tvDashboardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="40dp"
         android:text="Mentee Dashboard"
+        android:textColor="#056C39"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:textColor="#056C39"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- RecyclerView for mentor profile cards -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMentorProfiles"
         android:layout_width="0dp"
@@ -42,21 +41,56 @@
         android:clipToPadding="false"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
+        android:scrollbars="vertical"
         app:layout_constraintTop_toBottomOf="@id/tvDashboardTitle"
         app:layout_constraintBottom_toTopOf="@id/btnNearbyMentors"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:scrollbars="vertical" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Button to choose nearby mentors in map -->
     <Button
         android:id="@+id/btnNearbyMentors"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="Find Nearby Mentors"
         android:textColor="#FFFFFF"
         android:backgroundTint="#056C39"
-        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSeeMentees"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnSeeMentees"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="See Mentees"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1E88E5"
+        app:layout_constraintBottom_toTopOf="@+id/btnBookAppointment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnBookAppointment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Book an Appointment"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#8E24AA"
+        app:layout_constraintBottom_toTopOf="@+id/btnJoinMentee"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnJoinMentee"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Join with the Mentee"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FB8C00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
