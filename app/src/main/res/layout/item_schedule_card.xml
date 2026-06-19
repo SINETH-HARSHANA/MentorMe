@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/tvSchMenteeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mentee: -"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="#222222" />
+
+        <TextView
+            android:id="@+id/tvSchTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time: -"
+            android:textColor="#444444"
+            android:layout_marginTop="6dp" />
+
+        <TextView
+            android:id="@+id/tvSchNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notes: -"
+            android:textColor="#444444"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvSchStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status: confirmed"
+            android:textStyle="bold"
+            android:textColor="#056C39"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

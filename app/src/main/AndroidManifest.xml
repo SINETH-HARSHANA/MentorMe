@@ -38,6 +38,9 @@
         <activity android:name=".BookAppointmentActivity"/>
         <activity android:name=".JoinMenteeActivity"/>
         <activity android:name=".SeeMenteesActivity"/>
+        <activity android:name=".MentorRequestsActivity"/>
+        <activity android:name=".MentorScheduleActivity"/>
+
 
 
 

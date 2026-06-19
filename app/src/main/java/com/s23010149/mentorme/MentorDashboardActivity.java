@@ -13,26 +13,31 @@ public class MentorDashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mentor_dashboard); // <-- your XML file name
+        setContentView(R.layout.mentor_dashboard);
 
         btnViewRequests = findViewById(R.id.btnViewRequests);
         btnMySchedule = findViewById(R.id.btnMySchedule);
         btnLogout = findViewById(R.id.btnLogout);
         btnProfileSettings = findViewById(R.id.button5);
 
-        // Profile Settings -> create_profile_mentor activity
-        btnProfileSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(MentorDashboardActivity.this, CreateProfileMentorActivity.class);
-            startActivity(intent);
-        });
+        String mentorEmail = getIntent().getStringExtra("email");
+        if (mentorEmail == null) mentorEmail = "";
 
-        // Optional: other buttons
+        btnProfileSettings.setOnClickListener(v ->
+                startActivity(new Intent(MentorDashboardActivity.this, CreateProfileMentorActivity.class)));
+
+        String finalMentorEmail = mentorEmail;
+
         btnViewRequests.setOnClickListener(v -> {
-            // startActivity(new Intent(this, MentorRequestsActivity.class));
+            Intent i = new Intent(MentorDashboardActivity.this, MentorRequestsActivity.class);
+            i.putExtra("email", finalMentorEmail);
+            startActivity(i);
         });
 
         btnMySchedule.setOnClickListener(v -> {
-            // startActivity(new Intent(this, MentorScheduleActivity.class));
+            Intent i = new Intent(MentorDashboardActivity.this, MentorScheduleActivity.class);
+            i.putExtra("email", finalMentorEmail);
+            startActivity(i);
         });
 
         btnLogout.setOnClickListener(v -> {
